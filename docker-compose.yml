@@ -1,0 +1,22 @@
+version: "3"
+services:
+  app:
+    container_name: containerize_app_1
+    # your code goes here ...
+
+    #build the image using the Dockerfile at the app directory
+    build: ./app
+
+    # Instruct Docker to always restart the service
+    restart: always
+
+    # Serving our application to the port 8000
+    expose: 8000
+
+  nginx:
+    container_name: containerize_nginx_1
+    # your code goes here ...
+    Build: ./nginx
+    restart: always
+    ports:
+      -"80:80"
