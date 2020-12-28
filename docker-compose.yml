@@ -11,12 +11,13 @@ services:
     restart: always
 
     # Serving our application to the port 8000
-    expose: 8000
+    expose:
+      - 8000
 
   nginx:
     container_name: containerize_nginx_1
     # your code goes here ...
-    Build: ./nginx
+    build: ./nginx
     restart: always
     ports:
-      -"80:80"
+      - "80:80"

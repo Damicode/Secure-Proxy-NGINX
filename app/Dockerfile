@@ -4,9 +4,9 @@ FROM python:3
 WORKDIR /usr/src/app
 
 # Copy files from the current directory to /usr/src/app
-COPY * .
+COPY . /usr/src/app
 
 # Install dependencies
-RUN pip install no-cache-dir -r requirements.txt
+RUN pip install  -r src/requirements.txt
 
-CMD ["python" ,"server.py"]
+CMD ["python" ,"src/server.py"]
