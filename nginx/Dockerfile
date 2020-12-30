@@ -1,30 +1,30 @@
-# your code goes here ...
-
 # Use NGINX image
 
 FROM nginx
 
-
-
-#RUN groupdel  nginx 
 # Create nginx user/group first, to be consistent throughout Docker variants
-#RUN  groupadd  --gid 1000  nginx 
-#RUN  useradd  --uid 1000 --gid nginx --shell /bin/bash --create-home  nginx
+#RUN  groupadd  --gid 1005  nginx
+#RUN  useradd  --uid 1005 --gid nginx --shell /bin/bash --create-home nginx
 
-# Chown all the files to the app user.
-RUN chown -R nginx:nginx  /etc/nginx/conf.d/*.conf 
-RUN  chmod 777  /etc/nginx/conf.d
+# Change ownership to all the files to the app user.
 
-USER nginx
+#RUN useradd -ms /bin/bash nginx -f
+#RUN chown -R :nginx  /etc/nginx/conf.d/*.conf
 
-# Replace nginx.conf file with our own to the address mentioned 
+# addding nginx to the group nginx
+#RUN usermod -aG nginx1 nginx1
+
+#RUN ls -lah /var/log/nginx
+#RUN ls -lah /etc/nginx/conf.d
+#RUN ls -lah /etc/nginx/conf.d/nginx.conf
+EXPOSE 80
+RUN whoami; id
+
+# Replace nginx.conf file localy to the container remotely 
 
 RUN rm /etc/nginx/conf.d/default.conf
 
 COPY nginx.conf  /etc/nginx/conf.d/
 COPY nginx.conf /usr/share/nginx/html
-#COPY conf /etc/nginx
-
-CMD ["nginx", "-g", "daemon off;"]
 
 
