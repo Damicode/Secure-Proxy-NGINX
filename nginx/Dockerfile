@@ -17,14 +17,22 @@ FROM nginx
 #RUN ls -lah /var/log/nginx
 #RUN ls -lah /etc/nginx/conf.d
 #RUN ls -lah /etc/nginx/conf.d/nginx.conf
-EXPOSE 80
+#EXPOSE 80
 RUN whoami; id
 
+ENV nginx /nginx-files
+RUN mkdir $nginx
+WORKDIR $nginx
 # Replace nginx.conf file localy to the container remotely 
 
 RUN rm /etc/nginx/conf.d/default.conf
 
+
+
 COPY nginx.conf  /etc/nginx/conf.d/
 COPY nginx.conf /usr/share/nginx/html
-
+COPY . .
+RUN pwd
+RUN ls
+RUN ls /nginx-files/files
 

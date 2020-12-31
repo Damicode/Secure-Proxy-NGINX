@@ -11,8 +11,8 @@ RUN mkdir $APP
 WORKDIR $APP
 
 RUN pwd
-
-EXPOSE 8000
+RUN ls
+#EXPOSE 8000
 # Copy files from the current directory to /usr/src/app
 COPY src/requirements.txt .
 
@@ -22,6 +22,6 @@ RUN pip install  -r requirements.txt
 #Copy everything else to the image container
 COPY . .
 RUN pwd
-RUN ls
-CMD [ "uwsgi", "--ini", "app/src/app.ini" ]
+#RUN ls
+#CMD [ "uwsgi", "--ini", "app/src/app.ini" ]
 #CMD ["python" ,"./src/server.py"]
