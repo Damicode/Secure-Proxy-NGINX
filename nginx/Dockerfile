@@ -24,14 +24,24 @@ ENV nginx /nginx-files
 RUN mkdir $nginx
 WORKDIR $nginx
 # Replace nginx.conf file localy to the container remotely 
+RUN cat /etc/nginx/conf.d/default.conf
+RUN ls /etc/security
+COPY nofile.conf /etc/security/limits.d
+RUN cat /etc/security/limits.d/nofile.conf
+RUN ls /etc/security/limits.d
+RUN ls /etc/nginx/conf.d
+RUN rm /etc/nginx/nginx.conf
 
-RUN rm /etc/nginx/conf.d/default.conf
 
+RUN ls /etc/nginx
 
+RUN ls /etc/nginx/conf.d/
 
-COPY nginx.conf  /etc/nginx/conf.d/
+COPY nginx.conf  /etc/nginx
 COPY nginx.conf /usr/share/nginx/html
 COPY . .
+#RUN openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
+#RUN ln -s /etc/nginx/sites-available/my_app_1  /etc/nginx/sites-.*
 RUN pwd
 RUN ls
 RUN ls /nginx-files/files
