@@ -11,17 +11,18 @@ RUN mkdir $APP
 WORKDIR $APP
 
 RUN pwd
+#verify what is in that directory
 RUN ls
 #EXPOSE 8000
-# Copy files from the current directory to /usr/src/app
+# Copy files from source to the current directory 
 COPY src/requirements.txt .
 
-# Install dependencies
+# Install dependencies from the requirements text file
 RUN pip install  -r requirements.txt
 
 #Copy everything else to the image container
 COPY . .
-RUN pwd
+
 #RUN ls
-#CMD [ "uwsgi", "--ini", "app/src/app.ini" ]
+#CMD [ "uwsgi", "--ini", "app/src/server.ini" ]
 #CMD ["python" ,"./src/server.py"]
