@@ -7,7 +7,7 @@ services:
 
     #build the image using the Dockerfile at the app directory
     build: ./app
-    image: flash:1.1.1
+    image: flash:1.1.1 
 #    volumes:
 #      - "./:/app/src"
     environment:
