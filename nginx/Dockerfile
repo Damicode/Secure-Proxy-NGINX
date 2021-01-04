@@ -28,6 +28,17 @@ WORKDIR $nginx
 # remove the default nginx.conf file
 RUN rm /etc/nginx/nginx.conf
 
+
+RUN mkdir -p  /etc/pki/tls/certs/ &&  touch /etc/pki/tls/certs/ca-bundle.crt
+RUN cat /etc/ssl/certs/ca-certificates.crt > /etc/pki/tls/certs/ca-bundle.crt
+
+
+RUN chmod 777 /etc/pki/tls/certs/ca-bundle.crt
+#RUN ln -sfn /etc/pki/tls/certs/ca-bundle.crt  /etc/ssl/certs/ca-certificates.crt  
+RUN cp /etc/ssl/certs/ca-certificates.crt /etc/pki/tls/certs/
+RUN chmod 777 /etc/pki/tls/certs/ca-certificates.crt
+RUN ls -alh /etc/pki/tls/certs
+#RUN cat /etc/pki/tls/certs/ca-bundle.crt
 #confirmation of removal
 RUN ls /etc/nginx
 #check if the default.conf still there inside the conf.d
